@@ -73,21 +73,29 @@ public class Grid: MonoBehaviour {
         return grid[x, y];
     }
 
+    public List<Node> path;
 	void OnDrawGizmos(){
         
 		Gizmos.DrawWireCube (transform.position, new Vector3 (gridWorldSize.x, 1, gridWorldSize.y));
         if(grid != null)
         {
-            Node playerNode = NodeFromWorldPoint(player.position);
+            //Node playerNode = NodeFromWorldPoint(player.position);
             foreach (Node n in grid)
             {
                 Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                if (playerNode == n)
+
+                if (path!= null)
+                    if (path.Contains(n))
+                        Gizmos.color = Color.black;
+                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
+                
+
+               /* if (playerNode == n)
                 {
                     Gizmos.color = Color.cyan;
                 }
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
-
+                */
 
             }
         }
