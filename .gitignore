@@ -17,4 +17,3 @@ Temp/
 *.pyc
 __pycache__/
 *.class
-/ReadWeb/node_modules
